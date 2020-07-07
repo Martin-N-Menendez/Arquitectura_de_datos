@@ -44,9 +44,9 @@ DROP DATABASE IF EXISTS prueba
 
 ```SQL
 CREATE TABLE persona(
-  ID int NOT NULL,
-  nombre varchar(20),
-  DNI varchar(10)
+  ID INTEGER NOT NULL,
+  nombre VARCHAR(20),
+  DNI VARCHAR(10)
   );
 ```
 ### Insertar datos en la tabla
@@ -81,7 +81,7 @@ y debería ver lo siguiente:
 
 Para ingresar TODOS los campos
 ```SQL
-UPDATE persona set (nombre,DNI) = ('maria','456.789')
+UPDATE persona SET (nombre,DNI) = ('maria','456.789')
 WHERE DNI IS NULL
 ```
 | ID | nombre | DNI |
@@ -110,3 +110,39 @@ WHERE nombre = 'pepe'
 | ID | nombre | DNI |
 | ------------- | ------------- | ------------- |
 | 2  | maria | 456.789 |
+
+
+### Agregar columna a la tabla
+
+```SQL
+ALTER TABLE persona
+ADD COLUMN direccion VARCHAR(10)
+```
+| ID | nombre | DNI | direccion |
+| ------------- | ------------- | ------------- | ------------- |
+| 1  | pepe | 123.456 | [null] |
+| 2  | maria | 456.789 | [null] |
+
+### Modificar nombre de columna de tabla
+
+```SQL
+ALTER TABLE persona
+RENAME COLUMN direccion TO lugar
+```
+| ID | nombre | DNI | lugar |
+| ------------- | ------------- | ------------- | ------------- |
+| 1  | pepe | 123.456 | [null] |
+| 2  | maria | 456.789 | [null] |
+
+### Elimianr columna de la tabla
+
+```SQL
+ALTER TABLE persona
+DROP COLUMN lugar
+```
+| ID | nombre | DNI |
+| ------------- | ------------- | ------------- |
+| 1  | pepe | 123.456 |
+| 2  | maria | 456.789 |
+
+
