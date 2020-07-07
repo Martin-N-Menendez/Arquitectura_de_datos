@@ -269,3 +269,23 @@ WHERE nombre LIKE '%e%'
 | ID | nombre | DNI |
 | ------------- | ------------- | ------------- |
 | 1  | pepe | 123.456 |
+
+### Contar elementos de la tabla
+
+De la siguiente tabla:
+
+| ID | nombre | DNI |
+| ------------- | ------------- | ------------- |
+| 1  | jojo | 567 |
+| 2  | jose | 123 |
+| 3  | maria | 234 |
+| 4  | pepe | 345 |
+| 5  | raul | 456 |
+
+Cuantos tienen la letra 'e' en su nombre?
+
+```SQL
+SELECT COUNT(nombre) FROM persona
+WHERE nombre LIKE '%e%'
+```
+El resultado es 2 ('jose' y 'pepe')
