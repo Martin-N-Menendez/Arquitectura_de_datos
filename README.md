@@ -88,3 +88,14 @@ WHERE DNI IS NULL
 | ------------- | ------------- | ------------- |
 | 1  | pepe | 123.456 |
 | 2  | maria | 456.789 |
+
+### Buscar datos en la tabla (con alias)
+
+Ver solamente a maria y llamar a la columna "nombre" de otra forma
+```SQL
+SELECT nombre  AS objetivo FROM persona
+WHERE nombre = 'maria'
+```
+| objetivo |
+| ------------- | 
+| maria  |
