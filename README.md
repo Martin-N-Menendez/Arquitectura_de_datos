@@ -51,8 +51,7 @@ Para ingresar  SOLO los campos obligatorios (los que puse NOT NULL)
 ```SQL
 INSERT INTO persona (ID) VALUES('2')
 ```
-
-Debería ver lo siguiente:
+Click derecho en tabla "persona" > View/Edit Data > All rows y debería ver lo siguiente:
 
 | ID | nombre | DNI |
 | ------------- | ------------- | ------------- |
