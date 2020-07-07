@@ -246,3 +246,26 @@ INSERT INTO persona (nombre) VALUES ('luis')
 | 1  | pepe | 123.456 |
 | 2  | maria | 456.789 |
 | 3  | luis | 000.000 |
+
+### Ordenar tabla
+
+Para ordenar en sentido ascendente o descendente. 
+```SQL
+SELECT * FROM persona ORDER BY ID ASC/DESC
+```
+Puedo utilizar varios criterios de orden
+```SQL
+SELECT * FROM persona ORDER BY ID ASC , nombre DESC
+```
+
+### Buscar dato si no estas seguro del mismo
+
+Para buscar nombres que tengan 'e' y puedan tener mas letras a izquierda o derecha.
+
+```SQL
+SELECT * FROM persona
+WHERE nombre LIKE '%e%'
+```
+| ID | nombre | DNI |
+| ------------- | ------------- | ------------- |
+| 1  | pepe | 123.456 |
