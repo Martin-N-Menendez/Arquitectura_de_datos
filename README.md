@@ -13,7 +13,7 @@
 
 # Comandos
 
-Lista de comandos útiles
+Lista de comandos útiles en TOOLS > QUERY TOOLS
 
 ### Crear base de datos
 
