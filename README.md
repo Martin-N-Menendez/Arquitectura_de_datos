@@ -2,7 +2,9 @@
 
 # Comandos
 
-## Crear base de datos
+Lista de comandos útiles
+
+### Crear base de datos
 
 ```SQL
 CREATE DATABASE prueba
