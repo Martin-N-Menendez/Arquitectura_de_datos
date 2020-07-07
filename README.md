@@ -9,3 +9,11 @@ Lista de comandos útiles
 ```SQL
 CREATE DATABASE prueba
 ```
+
+### Eliminar base de datos
+
+Click derecho sobre la DB -> Disconnect database
+
+```SQL
+DROP DATABASE IF EXISTS prueba
+```
