@@ -66,5 +66,14 @@ y debería ver lo siguiente:
 | 1  | pepe | 123.456 |
 | 2  | [null] | [null] |
 
+### Actualizar valores de la tabla
 
-
+Para ingresar TODOS los campos
+```SQL
+UPDATE persona set ID = '4'
+WHERE DNI IS NULL
+```
+| ID | nombre | DNI |
+| ------------- | ------------- | ------------- |
+| 1  | pepe | 123.456 |
+| 4  | [null] | [null] |
