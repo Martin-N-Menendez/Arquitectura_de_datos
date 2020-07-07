@@ -216,5 +216,33 @@ CREATE TABLE persona(
 ```
 Si la tabla ya existe NO ENCONTRE LA SOLUCION!
 
+### Reiniciar tabla
 
+Sin reiniciar el ID (cuando agregue elementos nuevos va a seguir contando desde donde quedo antes)
+```SQL
+TRUNCATE TABLE persona
+```
+Reiniciando el ID (cuando agregue elementos nuevos va a contar desde el 1)
+```SQL
+TRUNCATE TABLE persona RESTART IDENTITY
+```
 
+### Crear tablas con valores por defecto
+
+```SQL
+CREATE TABLE persona(
+  ID SERIAL PRIMARY KEY NOT NULL,
+  nombre VARCHAR(20),
+  DNI VARCHAR(10) DEFAULT "000.000"
+  );
+```
+Si luego ejecuto
+```SQL
+INSERT INTO persona (nombre) VALUES ('luis')
+```
+
+| ID | nombre | DNI |
+| ------------- | ------------- | ------------- |
+| 1  | pepe | 123.456 |
+| 2  | maria | 456.789 |
+| 3  | luis | 000.000 |
