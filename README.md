@@ -1,8 +1,8 @@
 # Arquitectura de datos
 
 
-# Comandos
+# Crear base de datos
 
 ```
-Hola
+CREATE DATABASE prueba
 ```
