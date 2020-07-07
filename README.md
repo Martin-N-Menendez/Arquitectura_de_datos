@@ -28,3 +28,15 @@ Click derecho sobre la DB -> Disconnect database
 ```SQL
 DROP DATABASE IF EXISTS prueba
 ```
+
+### Crear tabla
+
+Click derecho sobre la DB -> Disconnect database
+
+```SQL
+CREATE TABLE persona(
+  ID int NOT NULL,
+  nombre varchar(20),
+  DNI varchar(10)
+  );
+```
