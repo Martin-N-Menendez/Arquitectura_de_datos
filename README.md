@@ -202,3 +202,19 @@ Si la tabla ya existe y quiero modificar una columna
 ALTER TABLE persona
 ADD PRIMARY KEY (ID)
 ```
+
+### Configurar clave primaria autoincremental (para definir campos con valor único incremental)
+
+Si la tabla aun no existe
+
+```SQL
+CREATE TABLE persona(
+  ID SERIAL PRIMARY KEY NOT NULL,
+  nombre VARCHAR(20),
+  DNI VARCHAR(10)
+  );
+```
+Si la tabla ya existe NO ENCONTRE LA SOLUCION!
+
+
+
