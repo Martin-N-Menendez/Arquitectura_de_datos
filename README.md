@@ -99,3 +99,14 @@ WHERE nombre = 'maria'
 | objetivo |
 | ------------- | 
 | maria  |
+
+### Borrar elementos de la tabla
+
+Puedo usar cualquier criterio en WHERE
+```SQL
+DELETE FROM persona
+WHERE nombre = 'pepe'
+```
+| ID | nombre | DNI |
+| ------------- | ------------- | ------------- |
+| 2  | maria | 456.789 |
