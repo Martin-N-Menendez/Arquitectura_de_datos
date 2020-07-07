@@ -173,3 +173,12 @@ ALTER TABLE persona
 ALTER COLUMN direccion DROP NOT NULL
 ```
 De esta forma al hacer un insert el dato "direccion"  ya no sera obligatorio.
+
+### Cambiar tipo de dato de una columna
+
+Para cambiar el tipo de "direccion" a un varchar de otro tamaño (no puedo pasarlo a integer sin castear los datos que ya tengo)
+
+```SQL
+ALTER TABLE persona
+ALTER COLUMN direccion TYPE VARCHAR(15)
+```
