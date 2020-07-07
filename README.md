@@ -38,8 +38,6 @@ CREATE TABLE persona(
   DNI varchar(10)
   );
 ```
-
-
 ### Insertar datos en la tabla
 
 Para ingresar TODOS los campos
@@ -51,9 +49,22 @@ Para ingresar  SOLO los campos obligatorios (los que puse NOT NULL)
 ```SQL
 INSERT INTO persona (ID) VALUES('2')
 ```
-Click derecho en tabla "persona" > View/Edit Data > All rows y debería ver lo siguiente:
+### Ver datos de la tabla
+
+Click derecho en tabla "persona" > View/Edit Data > All rows
+
+o
+
+```SQL
+SELECT * FROM persona
+```
+
+y debería ver lo siguiente:
 
 | ID | nombre | DNI |
 | ------------- | ------------- | ------------- |
 | 1  | pepe | 123.456 |
 | 2  | [null] | [null] |
+
+
+
