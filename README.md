@@ -182,3 +182,23 @@ Para cambiar el tipo de "direccion" a un varchar de otro tamaño (no puedo pasar
 ALTER TABLE persona
 ALTER COLUMN direccion TYPE VARCHAR(15)
 ```
+
+### Configurar clave primaria (para definir campos con valor único)
+
+Si la tabla aun no existe
+
+```SQL
+CREATE TABLE persona(
+  ID INTEGER NOT NULL,
+  nombre VARCHAR(20),
+  DNI VARCHAR(10),
+  PRIMARI KEY(ID)
+  );
+```
+
+Si la tabla ya existe y quiero modificar una columna
+
+```SQL
+ALTER TABLE persona
+ADD PRIMARY KEY (ID)
+```
