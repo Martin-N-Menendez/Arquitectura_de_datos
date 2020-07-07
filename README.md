@@ -11,6 +11,17 @@
 
 [![Watch the video](https://www.uncommunitymanager.es/wp-content/uploads/seo_google_youtube.jpg)](https://www.youtube.com/watch?v=jxIEDKzGrOs&list=PL8gxzfBmzgex2nuVanqvxoTXTPovVSwi2)
 
+# Tipos de datos
+
+- Boolean = TRUE o FALSE
+- Int, Integer = Entero
+- Float = Flotante
+- Decimal = Exacto
+- Character(N) = Cadena de caracteres de tamaño fijo N
+- Varchar(N) = Cadena de caracteres de tamaño variable hasta N
+- Date = Fecha
+- Time = Tiempo en HH:MM:SS
+
 # Comandos
 
 Lista de comandos útiles en TOOLS > QUERY TOOLS (sobre la DB que quiero, cada una tiene SU consola).
