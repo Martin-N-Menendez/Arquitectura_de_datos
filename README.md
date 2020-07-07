@@ -1,5 +1,12 @@
 # Arquitectura de datos
 
+[ ] Definir diagrama UML
+[ ] Definir tablas
+[ ] Crear base de datos (DB)
+[ ] Cargas datos en la DB
+[ ] Consultar a la DB
+[ ] Agregar elementos a la DB
+
 # Comandos
 
 Lista de comandos útiles
