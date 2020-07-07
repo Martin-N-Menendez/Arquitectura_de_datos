@@ -70,10 +70,10 @@ y debería ver lo siguiente:
 
 Para ingresar TODOS los campos
 ```SQL
-UPDATE persona set ID = '4'
+UPDATE persona set (nombre,DNI) = ('maria','456.789')
 WHERE DNI IS NULL
 ```
 | ID | nombre | DNI |
 | ------------- | ------------- | ------------- |
 | 1  | pepe | 123.456 |
-| 4  | [null] | [null] |
+| 2  | maria | 456.789 |
