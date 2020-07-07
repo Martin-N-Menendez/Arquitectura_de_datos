@@ -7,6 +7,10 @@
 - [ ] Consultar a la DB
 - [ ] Agregar elementos a la DB
 
+# Fuente
+
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=jxIEDKzGrOs&list=PL8gxzfBmzgex2nuVanqvxoTXTPovVSwi2)
+
 # Comandos
 
 Lista de comandos útiles
