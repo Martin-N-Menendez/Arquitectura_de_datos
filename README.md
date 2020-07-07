@@ -134,7 +134,7 @@ RENAME COLUMN direccion TO lugar
 | 1  | pepe | 123.456 | [null] |
 | 2  | maria | 456.789 | [null] |
 
-### Elimianr columna de la tabla
+### Eliminar columna de la tabla
 
 ```SQL
 ALTER TABLE persona
@@ -146,3 +146,30 @@ DROP COLUMN lugar
 | 2  | maria | 456.789 |
 
 
+
+### Actualizar un dato a toda la columna
+
+```SQL
+UPDATE persona SET direccion = 'Algo'
+```
+
+| ID | nombre | DNI | direccion |
+| ------------- | ------------- | ------------- | ------------- |
+| 1  | pepe | 123.456 | Algo |
+| 2  | maria | 456.789 | Algo |
+
+### Cambiar una columna para que no admita datos nulos
+
+```SQL
+ALTER TABLE persona
+ALTER COLUMN direccion SET NOT NULL
+```
+De esta forma al hacer un insert el dato "direccion" sera obligatorio.
+
+### Cambiar una columna para que admita datos nulos
+
+```SQL
+ALTER TABLE persona
+ALTER COLUMN direccion DROP NOT NULL
+```
+De esta forma al hacer un insert el dato "direccion"  ya no sera obligatorio.
