@@ -334,6 +334,37 @@ HAVING salario > 3000             -- Actua sobre el GROUP
 ```
 
 | nombre | salario |
-| ------------- | ------------- 
+| ------------- | ------------- |
 | jose | 5500 |
 
+### Mostrar elementos distintos
+
+De la siguiente tabla:
+
+| ID | nombre | salario |
+| ------------- | ------------- | ------------- |
+| 1  | jose | 2500 |
+| 2  | maria | 4500 |
+| 3  | eduardo | 3000 |
+| 4  | jose | 5500 |
+| 5  | pepe | 200 |
+
+Al aplicar:
+```SQL
+SELECT DISTINCT nombre FROM persona
+```
+
+Obtenemos:
+| nombre |
+| ------------- | 
+| jose |
+| maria |
+| eduardo |
+| pepe |
+
+Y si aplicamos:
+```SQL
+SELECT COUNT(DISTINCT nombre) FROM persona
+```
+
+El resultado será 4
