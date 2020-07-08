@@ -394,3 +394,17 @@ Obtenemos:
 | 1  | jose | 2500 |
 | 2  | maria | 4500 |
 | 3  | eduardo | 3000 |
+
+Al aplicar:
+```SQL
+SELECT * FROM persona
+WHERE salario NOT BETWEEN 2000 AND 5000
+```
+
+Obtenemos:
+
+| ID | nombre | salario |
+| ------------- | ------------- | ------------- |
+| 4  | jose | 5500 |
+| 5  | pepe | 200 |
+
