@@ -368,3 +368,29 @@ SELECT COUNT(DISTINCT nombre) FROM persona
 ```
 
 El resultado será 4
+
+### Mostrar rango de elementos
+
+De la siguiente tabla:
+
+| ID | nombre | salario |
+| ------------- | ------------- | ------------- |
+| 1  | jose | 2500 |
+| 2  | maria | 4500 |
+| 3  | eduardo | 3000 |
+| 4  | jose | 5500 |
+| 5  | pepe | 200 |
+
+Al aplicar:
+```SQL
+SELECT * FROM persona
+WHERE salario BETWEEN 2000 AND 5000
+```
+
+Obtenemos:
+
+| ID | nombre | salario |
+| ------------- | ------------- | ------------- |
+| 1  | jose | 2500 |
+| 2  | maria | 4500 |
+| 3  | eduardo | 3000 |
