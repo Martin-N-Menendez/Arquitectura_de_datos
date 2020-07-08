@@ -289,3 +289,13 @@ SELECT COUNT(nombre) FROM persona
 WHERE nombre LIKE '%e%'
 ```
 El resultado es 2 ('jose' y 'pepe')
+
+### Sumar registros
+
+Si 'salario' fuese un INTEGER.
+
+```SQL
+SELECT SUM(salario) FROM persona
+```
+
+
