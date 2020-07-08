@@ -425,4 +425,39 @@ ALTER TABLE persona
 DROP CONSTRAINT salario_unico
 ```
 
+### Clave foránea
+
+Creo una tabla secundaria a la cual ligar los datos de la primer tabla
+
+```SQL
+CREATE TABLE empresa(
+  ID SERIAL PRIMARY KEY NOT NULL,
+  nombre VARCHAR(20)
+  );
+```
+Lleno la tabla secundaria de datos
+```SQL
+INSERT INTO empresa (nombre) VALUES ('EMPRESA_A');
+INSERT INTO empresa (nombre) VALUES ('EMPRESA_B');
+INSERT INTO empresa (nombre) VALUES ('EMPRESA_C');
+```
+
+| ID | nombre | 
+| ------------- | ------------- |
+| 1 | EMPRESA_A |
+| 2 | EMPRESA_B |
+| 3 | EMPRESA_C |
+
+Agrego a la tabla primaria una columna para el codigo de empresa
+
+```SQL
+ALTER TABLE persona
+ADD CodigoEmpresa INTEGER  
+```
+Linkeo la tabla principal a la secundaria cargando los datos
+
+```SQL
+UPDATE persona SET CodigoEmpresa = '2'
+```
+Si intento añadir un nuevo elemento a la tabla primaria con un CodigoEmpresa que no exista en la tabla secundaria dará un error.
 
