@@ -298,4 +298,42 @@ Si 'salario' fuese un INTEGER.
 SELECT SUM(salario) FROM persona
 ```
 
+### Agrupar registros con criterio
+
+Si 'salario' fuese un INTEGER.
+
+Para agrupar todos los nombres iguales, dejando el que tenga menor salario (se puede hacer con MAX y seria el mayor salario).
+
+```SQL
+SELECT nombre, MIN(salario) FROM persona
+GROUP BY nombre
+```
+Para agrupar por promedio.
+
+```SQL
+SELECT AVG(salario) FROM persona
+```
+
+### Filtrado de grupos
+
+De la siguiente tabla:
+
+| ID | nombre | salario |
+| ------------- | ------------- | ------------- |
+| 1  | jose | 2500 |
+| 2  | maria | 4500 |
+| 3  | eduardo | 3000 |
+| 4  | jose | 5500 |
+| 5  | pepe | 200 |
+
+```SQL
+SELECT nombre,salario FROM persona
+WHERE nombre = 'jose'             -- Actua sobre el SELECT
+GROUP BY nombre,salario
+HAVING salario > 3000             -- Actua sobre el GROUP
+```
+
+| nombre | salario |
+| ------------- | ------------- 
+| jose | 5500 |
 
