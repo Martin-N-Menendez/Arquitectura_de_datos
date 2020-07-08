@@ -408,3 +408,21 @@ Obtenemos:
 | 4  | jose | 5500 |
 | 5  | pepe | 200 |
 
+### Restringir valores de la tabla
+
+Si quiero añadir una restruccion para que 'salario' no se repita.
+
+```SQL
+ALTER TABLE persona
+ADD CONSTRAINT salario_unico
+UNIQUE(salario)
+```
+
+Si quiero elimianr dicha restruccion.
+
+```SQL
+ALTER TABLE persona
+DROP CONSTRAINT salario_unico
+```
+
+
