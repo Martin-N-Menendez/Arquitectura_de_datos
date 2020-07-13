@@ -108,80 +108,47 @@
 | :-: | :-: |
 | 1 | 0 |
 
-## Secciones
+## Estado_SEC
 
-| ID | nombre | estado |
-| :-: | :-: | :-: |
-| 1 | 'T_1'  | 1 |
-| 2 | 'T_2'  | 1 |
-| 3 | 'T_3'  | 1 |
-| 4 | 'T_4'  | 1 |
-| 5 | 'T_5'  | 1 |
-| 6 | 'T_6'  | 1 |
-| 7 | 'T_7'  | 1 |
-| 8 | 'T_8'  | 1 |
+| ID | estado |
+| :-: | :-: |
+| 0 | 'Ocupado' |
+| 1 | 'Libre' |
 
-## Secciones
+## Tipo_puertos
 
-| ID | nombre | estado |
-| :-: | :-: | :-: |
-| 1 | 'T_1'  | 1 |
-| 2 | 'T_2'  | 1 |
-| 3 | 'T_3'  | 1 |
-| 4 | 'T_4'  | 1 |
-| 5 | 'T_5'  | 1 |
-| 6 | 'T_6'  | 1 |
-| 7 | 'T_7'  | 1 |
-| 8 | 'T_8'  | 1 |
+| ID | puertos |
+| :-: | :-: |
+| 1 | 'Anterior' |
+| 2 | 'Posterior' |
+| 3 | 'Desvio' |
 
-## Secciones
+## Estado_MDC
 
-| ID | nombre | estado |
-| :-: | :-: | :-: |
-| 1 | 'T_1'  | 1 |
-| 2 | 'T_2'  | 1 |
-| 3 | 'T_3'  | 1 |
-| 4 | 'T_4'  | 1 |
-| 5 | 'T_5'  | 1 |
-| 6 | 'T_6'  | 1 |
-| 7 | 'T_7'  | 1 |
-| 8 | 'T_8'  | 1 |
+| ID | estado |
+| :-: | :-: |
+| 0 | 'Normal' |
+| 1 | 'Reverso' |
 
-## Secciones
+## Tipo_SEM
 
-| ID | nombre | estado |
-| :-: | :-: | :-: |
-| 1 | 'T_1'  | 1 |
-| 2 | 'T_2'  | 1 |
-| 3 | 'T_3'  | 1 |
-| 4 | 'T_4'  | 1 |
-| 5 | 'T_5'  | 1 |
-| 6 | 'T_6'  | 1 |
-| 7 | 'T_7'  | 1 |
-| 8 | 'T_8'  | 1 |
+| ID | tipo |
+| :-: | :-: |
+| 1 | 'Circulacion' |
+| 2 | 'Maniobra' |
 
-## Secciones
+## Estado_SEM
 
-| ID | nombre | estado |
-| :-: | :-: | :-: |
-| 1 | 'T_1'  | 1 |
-| 2 | 'T_2'  | 1 |
-| 3 | 'T_3'  | 1 |
-| 4 | 'T_4'  | 1 |
-| 5 | 'T_5'  | 1 |
-| 6 | 'T_6'  | 1 |
-| 7 | 'T_7'  | 1 |
-| 8 | 'T_8'  | 1 |
+| ID | estado |
+| :-: | :-: |
+| 0 | 'Rojo' |
+| 1 | 'Amarillo' |
+| 2 | 'Verde' |
 
-## Secciones
+## Estado_PAN
 
-| ID | nombre | estado |
-| :-: | :-: | :-: |
-| 1 | 'T_1'  | 1 |
-| 2 | 'T_2'  | 1 |
-| 3 | 'T_3'  | 1 |
-| 4 | 'T_4'  | 1 |
-| 5 | 'T_5'  | 1 |
-| 6 | 'T_6'  | 1 |
-| 7 | 'T_7'  | 1 |
-| 8 | 'T_8'  | 1 |
+| ID | estado |
+| :-: | :-: |
+| 0 | 'Barrera baja' |
+| 1 | 'Barrera alta' |
+
