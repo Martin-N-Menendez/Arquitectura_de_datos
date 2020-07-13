@@ -1,9 +1,9 @@
 # Arquitectura de datos
 
-- [ ] Definir diagrama UML
-- [ ] Definir tablas
-- [ ] Crear base de datos (DB)
-- [ ] Cargas datos en la DB
+- [x] Definir diagrama UML
+- [x] Definir tablas
+- [x] Crear base de datos (DB)
+- [x] Cargas datos en la DB
 - [ ] Consultar a la DB
 - [ ] Agregar elementos a la DB
 
@@ -455,6 +455,11 @@ ALTER TABLE persona
 ADD CodigoEmpresa INTEGER  
 ```
 Linkeo la tabla principal a la secundaria cargando los datos
+
+ALTER TABLE persona
+ADD CONSTRAINT FK_test
+FOREIGN KEY (nombre)
+REFERENCES empresa(ID)
 
 ```SQL
 UPDATE persona SET CodigoEmpresa = '2'
