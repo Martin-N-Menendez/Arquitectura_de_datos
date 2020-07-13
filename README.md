@@ -7,6 +7,10 @@
 - [ ] Consultar a la DB
 - [ ] Agregar elementos a la DB
 
+# UML
+
+![Prueba](uml.png)
+
 # Fuente
 
 [![Watch the video](https://www.uncommunitymanager.es/wp-content/uploads/seo_google_youtube.jpg)](https://www.youtube.com/watch?v=jxIEDKzGrOs&list=PL8gxzfBmzgex2nuVanqvxoTXTPovVSwi2)
