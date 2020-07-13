@@ -22,6 +22,6 @@
 
 | ID | prueba | 
 | ------------- | ------------- |
-| 1 | EMPRESA_A |
+| 1 | EMPRESA_A  |
 | 2 | EMPRESA_B |
 | 3 | EMPRESA_C |
