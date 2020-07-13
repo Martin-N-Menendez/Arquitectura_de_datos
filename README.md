@@ -15,7 +15,7 @@
 # Topología
 
 
-![bypass](bypass.png)
+![bypass](bypass.jpg)
 
 # Tablas
 
