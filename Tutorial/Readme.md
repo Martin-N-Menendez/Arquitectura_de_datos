@@ -501,4 +501,23 @@ Para poder sumar personas a la lista ejecutando
 SELECT InsertarPersonas()
 ```
 
+### Vistas
 
+Para poder ver solamente el id y el nombre de una tabla
+
+```SQL
+CREATE VIEW view_data
+AS SELECT id,nombre FROM persona
+
+SELECT * FROM view_data
+```
+
+Y obtenemos:
+
+| ID | nombre |
+| ------------- | ------------- |
+| 1  | jose |
+| 2  | maria |
+| 3  | eduardo | 
+| 4  | jose | 
+| 5  | pepe | 
