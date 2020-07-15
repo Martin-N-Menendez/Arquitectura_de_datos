@@ -521,3 +521,18 @@ Y obtenemos:
 | 3  | eduardo | 
 | 4  | jose | 
 | 5  | pepe | 
+
+### Union
+
+Para poder hacer vistas combinando tablas
+
+```SQL
+CREATE VIEW view_union
+AS 
+SELECT id,nombre, 'persona' AS ORIGEN FROM persona
+UNION ALL
+SELECT id,nombre, 'empresa' FROM empresa
+ORDER BY ORIGEN
+
+SELECT * FROM view_union
+```
