@@ -481,3 +481,24 @@ SELECT BuscarSalario('eduardo')
 ```
 
 el resultado mostrado será 3000
+
+Tambien puedo crear funciones que no pida ni devuelva nada
+
+```SQL
+CREATE FUNCTION InsertarPersonas() RETURNS VOID
+AS
+$$
+
+INSERT INTO persona (nombre,salario) VALUES ('pepe',200);
+INSERT INTO persona (nombre,salario) VALUES ('jose',4500);
+
+$$
+LANGUAGE SQL
+```
+Para poder sumar personas a la lista ejecutando
+
+```SQL
+SELECT InsertarPersonas()
+```
+
+
