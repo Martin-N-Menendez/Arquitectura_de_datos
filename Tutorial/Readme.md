@@ -459,3 +459,25 @@ UPDATE persona SET CodigoEmpresa = '2'
 ```
 Si intento añadir un nuevo elemento a la tabla primaria con un CodigoEmpresa que no exista en la tabla secundaria dará un error.
 
+### Crear funciones
+
+Creo una funcion que reciba el nombre de la persona y devuelva el salario asociado.
+
+```SQL
+CREATE FUNCTION BuscarSalario(variable VARCHAR) RETURNS INTEGER
+AS
+$$
+
+SELECT salario FROM persona
+WHERE nombre = variable
+
+$$
+LANGUAGE SQL
+```
+Invocando con
+
+```SQL
+SELECT BuscarSalario('eduardo')
+```
+
+el resultado mostrado será 3000
