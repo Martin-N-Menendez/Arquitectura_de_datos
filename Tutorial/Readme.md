@@ -447,10 +447,12 @@ ADD CodigoEmpresa INTEGER
 ```
 Linkeo la tabla principal a la secundaria cargando los datos
 
+```SQL
 ALTER TABLE persona
 ADD CONSTRAINT FK_test
 FOREIGN KEY (nombre)
 REFERENCES empresa(ID)
+```
 
 ```SQL
 UPDATE persona SET CodigoEmpresa = '2'
