@@ -189,3 +189,30 @@ WHERE estado = 1
 | 7 | 'T_7'  | Desocupado |
 | 8 | 'T_8'  | Desocupado |
 
+## Mostrar a que sección esta conectada cada una y en que puerto
+
+```SQL
+SELECT ID,nombre,ID2 AS conectado_con,puerto FROM secciones AS A1
+FULL JOIN (SELECT ID1,ID2,(SELECT puerto FROM tipo_puertos WHERE ID = adyacencias.puerto) FROM adyacencias) AS B1
+ON A1.ID = B1.ID1
+```
+
+| ID | nombre | conectado_con | puerto |
+| :-: | :-: | :-: | :-: |
+| 1 | "T_1" | 2 | "Posterior" |
+| 2 | "T_2" | 1 | "Anterior" |
+| 2 | "T_2" | 3 | "Posterior" |
+| 2 | "T_2" | 4 | "Desvio" |
+| 3 | "T_3" | 2 | "Anterior" |
+| 3 | "T_3" | 5 | "Desvio" |
+| 4 | "T_4" | 2 | "Anterior" |
+| 4 | "T_4" | 5 | "Posterior" |
+| 5 | "T_5" | 3 | "Anterior" |
+| 5 | "T_5" | 6 | "Posterior" |
+| 6 | "T_6" | 5 | "Anterior" |
+| 6 | "T_6" | 7 | "Posterior" |
+| 5 | "T_5" | 6 | "Anterior" |
+| 7 | "T_7" | 8 | "Posterior" |
+| 8 | "T_8" | 7 | "Anterior" |
+
+
