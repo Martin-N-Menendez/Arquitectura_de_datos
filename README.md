@@ -236,4 +236,26 @@ SELECT ID,
 | 9 | "Maniobra" | "Rojo" |
 | 10 | "Maniobra" | "Rojo" |
 
+## Mostrar estado de pasos a nivel
+
+```SQL
+SELECT ID,
+(SELECT estado FROM estado_pan WHERE ID = paso_a_nivel.estado) FROM paso_a_nivel
+```
+
+| ID | estado |
+| :-: | :-: |
+| 1 | "Barrera baja" |
+
+## Mostrar estado de máquinas de cambios
+
+```SQL
+SELECT ID,nombre,anterior,posterior,desvio,
+(SELECT estado FROM estado_mdc WHERE ID = maquina_de_cambios.estado) FROM maquina_de_cambios
+```
+
+| ID | nombre | anterior | posterior | desvio | estado |
+| :-: | :-: | :-: | :-: | :-: | :-: |
+| 1 | "MDC_1" | 1 | 3 | 4 | "Normal" |
+| 2 | "MDC_2" | 3 | 6 | 4 | "Normal" |
 
