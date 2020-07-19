@@ -218,7 +218,9 @@ ON A1.ID = B1.ID1
 ## Mostrar tipo y estado de semáforos
 
 ```SQL
-SELECT ID,(SELECT tipo FROM tipo_sem WHERE ID = semaforos.tipo), (SELECT estado FROM estado_sem WHERE ID = semaforos.estado) FROM semaforos
+SELECT ID,
+(SELECT tipo FROM tipo_sem WHERE ID = semaforos.tipo), 
+(SELECT estado FROM estado_sem WHERE ID = semaforos.estado) FROM semaforos
 ```
 
 | ID | tipo | estado |
