@@ -152,3 +152,9 @@
 | 0 | 'Barrera baja' |
 | 1 | 'Barrera alta' |
 
+# Consultas
+
+'''sql
+SELECT * FROM secciones
+'''
+
