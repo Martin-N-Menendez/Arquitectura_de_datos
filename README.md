@@ -154,7 +154,7 @@
 
 # Consultas
 
-'''sql
+```SQL
 SELECT * FROM secciones
-'''
+```
 
