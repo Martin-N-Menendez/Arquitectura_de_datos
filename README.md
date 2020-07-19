@@ -211,7 +211,7 @@ ON A1.ID = B1.ID1
 | 5 | "T_5" | 6 | "Posterior" |
 | 6 | "T_6" | 5 | "Anterior" |
 | 6 | "T_6" | 7 | "Posterior" |
-| 5 | "T_5" | 6 | "Anterior" |
+| 7 | "T_5" | 6 | "Anterior" |
 | 7 | "T_7" | 8 | "Posterior" |
 | 8 | "T_8" | 7 | "Anterior" |
 
