@@ -215,4 +215,23 @@ ON A1.ID = B1.ID1
 | 7 | "T_7" | 8 | "Posterior" |
 | 8 | "T_8" | 7 | "Anterior" |
 
+## Mostrar tipo y estado de semáforos
+
+```SQL
+SELECT ID,(SELECT tipo FROM tipo_sem WHERE ID = semaforos.tipo), (SELECT estado FROM estado_sem WHERE ID = semaforos.estado) FROM semaforos
+```
+
+| ID | tipo | estado |
+| :-: | :-: | :-: |
+| 1 | "Circulacion" | "Rojo" |
+| 2 | "Maniobra" | "Rojo" |
+| 3 | "Circulacion" | "Rojo" |
+| 4 | "Circulacion" | "Rojo" |
+| 5 | "Maniobra" | "Rojo" |
+| 6 | "Maniobra" | "Rojo" |
+| 7 | "Circulacion" | "Rojo" |
+| 8 | "Maniobra" | "Rojo" |
+| 9 | "Maniobra" | "Rojo" |
+| 10 | "Maniobra" | "Rojo" |
+
 
