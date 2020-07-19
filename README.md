@@ -23,11 +23,11 @@
 
 | ID | nombre | estado |
 | :-: | :-: | :-: |
-| 1 | 'T_1'  | 1 |
+| 1 | 'T_1'  | 0 |
 | 2 | 'T_2'  | 1 |
 | 3 | 'T_3'  | 1 |
 | 4 | 'T_4'  | 1 |
-| 5 | 'T_5'  | 1 |
+| 5 | 'T_5'  | 0 |
 | 6 | 'T_6'  | 1 |
 | 7 | 'T_7'  | 1 |
 | 8 | 'T_8'  | 1 |
@@ -154,7 +154,38 @@
 
 # Consultas
 
+## Contar cantidad de secciones
+
 ```SQL
-SELECT * FROM secciones
+SELECT COUNT(ID) FROM secciones
 ```
+Resultado = 8
+
+## Mostrar solo secciones ocupados
+
+```SQL
+SELECT ID,nombre, (SELECT estado FROM estado_sec WHERE ID = secciones.estado) FROM secciones
+WHERE estado = 0
+```
+
+| ID | nombre | estado |
+| :-: | :-: | :-: |
+| 1 | 'T_1'  | Ocupado |
+| 5 | 'T_5'  | Ocupado |
+
+## Mostrar solo secciones libres
+
+```SQL
+SELECT ID,nombre, (SELECT estado FROM estado_sec WHERE ID = secciones.estado) FROM secciones
+WHERE estado = 1
+```
+
+| ID | nombre | estado |
+| :-: | :-: | :-: |
+| 2 | 'T_2'  | Desocupado |
+| 3 | 'T_3'  | Desocupado |
+| 4 | 'T_4'  | Desocupado |
+| 6 | 'T_6'  | Desocupado |
+| 7 | 'T_7'  | Desocupado |
+| 8 | 'T_8'  | Desocupado |
 
