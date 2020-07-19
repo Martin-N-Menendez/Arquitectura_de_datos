@@ -4,8 +4,7 @@
 - [x] Definir tablas
 - [x] Crear base de datos (DB)
 - [x] Cargas datos en la DB
-- [ ] Consultar a la DB
-- [ ] Agregar elementos a la DB
+- [x] Consultar a la DB
 
 # UML
 
