@@ -70,6 +70,36 @@ facturas
 ```
 
 ### b. Obtener 1 sólo documento para ver el esquema y los nombres de los campos. Sin mostrar el _id.
+
+```
+> db.facturas.findOne({},{_id:0})
+{
+	"cliente" : {
+		"apellido" : "Malinez",
+		"cuit" : 2740488484,
+		"nombre" : "Marina",
+		"region" : "CENTRO"
+	},
+	"condPago" : "CONTADO",
+	"fechaEmision" : ISODate("2014-02-20T00:00:00Z"),
+	"fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"),
+	"item" : [
+		{
+			"cantidad" : 11,
+			"precio" : 18,
+			"producto" : " CORREA 12mm"
+		},
+		{
+			"cantidad" : 1,
+			"precio" : 490,
+			"producto" : "TALADRO 12mm"
+		}
+	],
+	"nroFactura" : 1063
+}
+
+```
+
 ### c. Obtener las facturas con fecha de emisión posterior al 23/02/2014 y número menor a 1500. Ordenar por región y cuit del cliente
 ### d. Obtener sólo los datos de cliente de las facturas donde se haya comprado “CORREA 10mm”. Ordenar por apellido del cliente.
 ### e. Obtener sólo nombre y apellido de cliente, de las facturas con número entre 2500 y 3000.
