@@ -4,8 +4,8 @@ mongoimport -d finanzas -c facturas --file facturas.json
 2. Abrir el shell de MongoDB (mongo) y pararse en la db finanzas:
 3. Realizar las siguientes operaciones:
 
- a. Consultar la cantidad de documentos insertados.
- b. Obtener 1 sólo documento para ver el esquema y los nombres de los campos. Sin
+ 1. Consultar la cantidad de documentos insertados.
+ 2. Obtener 1 sólo documento para ver el esquema y los nombres de los campos. Sin
 mostrar el _id.
  c. Obtener las facturas con fecha de emisión posterior al 23/02/2014 y número menor
 a 1500. Ordenar por región y cuit del cliente
