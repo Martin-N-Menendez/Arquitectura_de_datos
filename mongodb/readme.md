@@ -1,5 +1,5 @@
 # Práctica de MongoDB
-t
+
 ## 1. Abrir una terminal en el directorio donde haya guardado el archivo “facturas.json” y usar el siguiente comando para importar la colección de facturas a la db finanzas:
 
 ```
