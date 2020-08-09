@@ -1,5 +1,8 @@
 ## 1. Abrir una terminal en el directorio donde haya guardado el archivo “facturas.json” y usar el siguiente comando para importar la colección de facturas a la db finanzas:
+
+```
 mongoimport -d finanzas -c facturas --file facturas.json
+```
 ## 2. Abrir el shell de MongoDB (mongo) y pararse en la db finanzas:
 ## 3. Realizar las siguientes operaciones:
 
