@@ -294,3 +294,311 @@ Codigo
 
 ```
 
+## 2. Realizar las siguientes operaciones:
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+> db.facturas.find({"cliente.apellido":{$regex:"i",$nin:['Manoni'],$options:"i"}},{nroFactura:1,"cliente.apellido":1,_id:0})
+{ "cliente" : { "apellido" : "Malinez" }, "nroFactura" : 1063 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1071 }
+{ "cliente" : { "apellido" : "Malinez" }, "nroFactura" : 1070 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1072 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1001 }
+{ "cliente" : { "apellido" : "Malinez" }, "nroFactura" : 1000 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1002 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1065 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1009 }
+{ "cliente" : { "apellido" : "Malinez" }, "nroFactura" : 1014 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1064 }
+{ "cliente" : { "apellido" : "Malinez" }, "nroFactura" : 1007 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1008 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1015 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1016 }
+{ "cliente" : { "apellido" : "Malinez" }, "nroFactura" : 1021 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1022 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1023 }
+{ "cliente" : { "apellido" : "Zavasi" }, "nroFactura" : 1036 }
+{ "cliente" : { "apellido" : "Malinez" }, "nroFactura" : 1035 }
+Type "it" for more
+> 
+```
+
+### b. Obtener las facturas de clientes con apellido terminado en i, cuya región sea CABA y donde hayan comprado una TUERCA, sin importar su medida.
+
+```
+> db.facturas.find({$and:[{"cliente.apellido":{$regex:".*i$",$options:"i"}},{"cliente.region":"CABA"},{"item.producto":{$regex:"TUERCA.*"}}]},{_id:0})
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1072 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1002 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1065 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1009 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1016 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1023 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1037 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1044 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1051 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1030 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1058 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1079 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1086 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1093 }
+> 
+```
+
+### c. Obtener las facturas donde se haya comprado una correa, sin importar la medida.
+
+```
+> db.facturas.find({"item.producto":{$regex:"correa.*", $options:"i"}},{_id:0}).limit(1)
+{ "cliente" : { "apellido" : "Malinez", "cuit" : 2740488484, "nombre" : "Marina", "region" : "CENTRO" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 11, "precio" : 18, "producto" : " CORREA 12mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" } ], "nroFactura" : 1063 }
+>
+```
+
+### d. Obtener los datos de cliente de las facturas donde se haya comprado 12 o más de cualquier ítem.
+
+```
+> db.facturas.find({"item.cantidad":{$gt:12}},{"cliente":1,_id:0})
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" } }
+>
+```
+
+### e. Obtener las facturas donde no se hayan comprado "SET HERRAMIENTAS"
+
+
+```
+> db.facturas.find({"item.producto":{ $not:{$regex:"set herramientas", $options:"i"}}},{_id:0})
+{ "cliente" : { "apellido" : "Malinez", "cuit" : 2740488484, "nombre" : "Marina", "region" : "CENTRO" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 11, "precio" : 18, "producto" : " CORREA 12mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" } ], "nroFactura" : 1063 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-22T00:00:00Z"), "item" : [ { "cantidad" : 2, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1071 }
+{ "cliente" : { "apellido" : "Malinez", "cuit" : 2740488484, "nombre" : "Marina", "region" : "CENTRO" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 11, "precio" : 18, "producto" : " CORREA 12mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" } ], "nroFactura" : 1070 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1072 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-22T00:00:00Z"), "item" : [ { "cantidad" : 2, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1001 }
+{ "cliente" : { "apellido" : "Malinez", "cuit" : 2740488484, "nombre" : "Marina", "region" : "CENTRO" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 11, "precio" : 18, "producto" : " CORREA 12mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" } ], "nroFactura" : 1000 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1002 }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-24T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-24T00:00:00Z"), "item" : [ { "cantidad" : 2, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" }, { "cantidad" : 15, "precio" : 90, "producto" : "TUERCA 5mm" } ], "nroFactura" : 1003 }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-25T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-25T00:00:00Z"), "item" : [ { "cantidad" : 10, "precio" : 90, "producto" : "TUERCA 5mm" } ], "nroFactura" : 1006 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1065 }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-24T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-24T00:00:00Z"), "item" : [ { "cantidad" : 2, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" }, { "cantidad" : 15, "precio" : 90, "producto" : "TUERCA 5mm" } ], "nroFactura" : 1010 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1009 }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-25T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-25T00:00:00Z"), "item" : [ { "cantidad" : 10, "precio" : 90, "producto" : "TUERCA 5mm" } ], "nroFactura" : 1013 }
+{ "cliente" : { "apellido" : "Malinez", "cuit" : 2740488484, "nombre" : "Marina", "region" : "CENTRO" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 11, "precio" : 18, "producto" : " CORREA 12mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" } ], "nroFactura" : 1014 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-22T00:00:00Z"), "item" : [ { "cantidad" : 2, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1064 }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-25T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-25T00:00:00Z"), "item" : [ { "cantidad" : 10, "precio" : 90, "producto" : "TUERCA 5mm" } ], "nroFactura" : 1069 }
+{ "cliente" : { "apellido" : "Manoni", "cuit" : 2029889382, "nombre" : "Juan Manuel", "region" : "NEA" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-24T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-24T00:00:00Z"), "item" : [ { "cantidad" : 2, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" }, { "cantidad" : 15, "precio" : 90, "producto" : "TUERCA 5mm" } ], "nroFactura" : 1066 }
+{ "cliente" : { "apellido" : "Malinez", "cuit" : 2740488484, "nombre" : "Marina", "region" : "CENTRO" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 11, "precio" : 18, "producto" : " CORREA 12mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" } ], "nroFactura" : 1007 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-22T00:00:00Z"), "item" : [ { "cantidad" : 2, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1008 }
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-22T00:00:00Z"), "item" : [ { "cantidad" : 2, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1015 }
+Type "it" for more
+>
+```
+
+### f. Armar una función en javascript que recorra un cursor con todos las facturas imprimiendo “Factura <nroFactura>: <cliente.apellido> compró <n> items”
+
+
+```
+> { 
+... var cursor = db.facturas.find();
+... while( cursor.hasNext() ){
+...  var factura = cursor.next();
+...  var cant = 0;
+...  for(var x =0; x < factura.item.length; x++){
+... cant = cant +factura.item[x].cantidad; 
+... }
+... print("Factura n: " + factura.nroFactura + " compró " + cant +" items");
+... }
+... }
+Factura n: 1063 compró 12 items
+Factura n: 1071 compró 2 items
+Factura n: 1070 compró 12 items
+Factura n: 1067 compró 1 items
+Factura n: 1072 compró 18 items
+Factura n: 1001 compró 2 items
+Factura n: 1000 compró 12 items
+Factura n: 1002 compró 18 items
+Factura n: 1003 compró 18 items
+Factura n: 1004 compró 1 items
+Factura n: 1006 compró 10 items
+Factura n: 1005 compró 2 items
+Factura n: 1068 compró 2 items
+Factura n: 1065 compró 18 items
+Factura n: 1010 compró 18 items
+Factura n: 1011 compró 1 items
+Factura n: 1009 compró 18 items
+Factura n: 1013 compró 10 items
+Factura n: 1012 compró 2 items
+Factura n: 1014 compró 12 items
+Factura n: 1064 compró 2 items
+Factura n: 1069 compró 10 items
+Factura n: 1066 compró 18 items
+Factura n: 1007 compró 12 items
+Factura n: 1008 compró 2 items
+Factura n: 1015 compró 2 items
+Factura n: 1016 compró 18 items
+Factura n: 1018 compró 1 items
+Factura n: 1017 compró 18 items
+Factura n: 1019 compró 2 items
+Factura n: 1020 compró 10 items
+Factura n: 1021 compró 12 items
+Factura n: 1022 compró 2 items
+Factura n: 1023 compró 18 items
+Factura n: 1024 compró 18 items
+Factura n: 1025 compró 1 items
+Factura n: 1032 compró 1 items
+Factura n: 1033 compró 2 items
+Factura n: 1031 compró 18 items
+Factura n: 1034 compró 10 items
+Factura n: 1036 compró 2 items
+Factura n: 1035 compró 12 items
+Factura n: 1037 compró 18 items
+Factura n: 1039 compró 1 items
+Factura n: 1038 compró 18 items
+Factura n: 1040 compró 2 items
+Factura n: 1041 compró 10 items
+Factura n: 1042 compró 12 items
+Factura n: 1044 compró 18 items
+Factura n: 1043 compró 2 items
+Factura n: 1045 compró 18 items
+Factura n: 1046 compró 1 items
+Factura n: 1048 compró 10 items
+Factura n: 1047 compró 2 items
+Factura n: 1026 compró 2 items
+Factura n: 1028 compró 12 items
+Factura n: 1049 compró 12 items
+Factura n: 1050 compró 2 items
+Factura n: 1051 compró 18 items
+Factura n: 1052 compró 18 items
+Factura n: 1053 compró 1 items
+Factura n: 1054 compró 2 items
+Factura n: 1055 compró 10 items
+Factura n: 1056 compró 12 items
+Factura n: 1057 compró 2 items
+Factura n: 1027 compró 10 items
+Factura n: 1030 compró 18 items
+Factura n: 1029 compró 2 items
+Factura n: 1059 compró 18 items
+Factura n: 1058 compró 18 items
+Factura n: 1075 compró 2 items
+Factura n: 1076 compró 10 items
+Factura n: 1077 compró 12 items
+Factura n: 1078 compró 2 items
+Factura n: 1079 compró 18 items
+Factura n: 1081 compró 1 items
+Factura n: 1080 compró 18 items
+Factura n: 1083 compró 10 items
+Factura n: 1082 compró 2 items
+Factura n: 1084 compró 12 items
+Factura n: 1060 compró 1 items
+Factura n: 1088 compró 1 items
+Factura n: 1087 compró 18 items
+Factura n: 1089 compró 2 items
+Factura n: 1086 compró 18 items
+Factura n: 1090 compró 10 items
+Factura n: 1091 compró 12 items
+Factura n: 1092 compró 2 items
+Factura n: 1093 compró 18 items
+Factura n: 1094 compró 18 items
+Factura n: 1095 compró 1 items
+Factura n: 1096 compró 2 items
+Factura n: 1097 compró 10 items
+Factura n: 1062 compró 10 items
+Factura n: 1085 compró 2 items
+Factura n: 1073 compró 18 items
+Factura n: 1074 compró 1 items
+Factura n: 1061 compró 2 items
+Factura n: 1098 compró 12 items
+Factura n: 1099 compró 2 items
+> 
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
+### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+
+
+```
+Codigo
+
+```
+
