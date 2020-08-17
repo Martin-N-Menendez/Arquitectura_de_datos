@@ -522,83 +522,314 @@ Factura n: 1099 compró 2 items
 > 
 ```
 
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+### g. Insertar una factura número 999 con usted como cliente, habiendo comprado un Destornillador.
 
 
 ```
-Codigo
+> db.facturas.insert({nroFactura:999,item:{cantidad:1,precio:270,producto:"Destornillador"},cliente:{apellido:"Menendez",cuit:0000000001, nombre: "Martin", region:"CABA"}})
+WriteResult({ "nInserted" : 1 })
+> 
 
 ```
 
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+### h. ¿De qué forma insertará el siguiente array de documentos para que, sin importar si alguno de ellos falla, el resto igualmente se inserte? [{_id:1},{_id:1},{_id:2}]
 
 
 ```
-Codigo
-
+> var bulk = db.collection.initializeUnorderedBulkOp();
+> bulk.insert({_id:1});
+> bulk.insert({_id:1});
+> bulk.insert({_id:2});
+> bulk.execute();
+uncaught exception: BulkWriteError({
+	"writeErrors" : [
+		{
+			"index" : 1,
+			"code" : 11000,
+			"errmsg" : "E11000 duplicate key error collection: finanzas.collection index: _id_ dup key: { _id: 1.0 }",
+			"op" : {
+				"_id" : 1
+			}
+		}
+	],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 2,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+}) :
+BulkWriteError({
+	"writeErrors" : [
+		{
+			"index" : 1,
+			"code" : 11000,
+			"errmsg" : "E11000 duplicate key error collection: finanzas.collection index: _id_ dup key: { _id: 1.0 }",
+			"op" : {
+				"_id" : 1
+			}
+		}
+	],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 2,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+BulkWriteError@src/mongo/shell/bulk_api.js:367:48
+BulkWriteResult/this.toError@src/mongo/shell/bulk_api.js:332:24
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1186:23
+@(shell):1:1
+> 
 ```
 
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+### i. Mediante un Bulk agregarle a cada factura del cliente Lavagno agregarle el campo “tipo” con el valor “VIP”. Este deberá estar dentro del campo cliente. (cliente: {nombre:…, apellido:…, tipo:…, …}). Junto con esto, eliminar las facturas entre 2000 y 2222.
+
+```
+> {
+... var bulk = db.facturas.initializeOrderedBulkOp();
+... bulk.find({"cliente.apellido":"Lavagno"}).update({ $set: {"cliente.tipo":"VIP"}});
+... bulk.find({$and:[{"nroFactura":{$gt:2000}},{"nroFactura":{$lt:2222}}]}).remove();
+... bulk.execute();
+... }
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 0,
+	"nUpserted" : 0,
+	"nMatched" : 14,
+	"nModified" : 14,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+> 
+> db.facturas.find({"cliente.apellido":"Lavagno"},{_id:0}).limit(5)
+{ "cliente" : { "apellido" : "Lavagno", "cuit" : 2729887543, "nombre" : "Soledad", "region" : "NOA", "tipo" : "VIP" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-24T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-26T00:00:00Z"), "item" : [ { "cantidad" : 1, "precio" : 700, "producto" : "SET HERRAMIENTAS" } ], "nroFactura" : 1067 }
+{ "cliente" : { "apellido" : "Lavagno", "cuit" : 2729887543, "nombre" : "Soledad", "region" : "NOA", "tipo" : "VIP" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-24T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-26T00:00:00Z"), "item" : [ { "cantidad" : 1, "precio" : 700, "producto" : "SET HERRAMIENTAS" } ], "nroFactura" : 1004 }
+{ "cliente" : { "apellido" : "Lavagno", "cuit" : 2729887543, "nombre" : "Soledad", "region" : "NOA", "tipo" : "VIP" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-24T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-26T00:00:00Z"), "item" : [ { "cantidad" : 1, "precio" : 700, "producto" : "SET HERRAMIENTAS" } ], "nroFactura" : 1011 }
+{ "cliente" : { "apellido" : "Lavagno", "cuit" : 2729887543, "nombre" : "Soledad", "region" : "NOA", "tipo" : "VIP" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-24T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-26T00:00:00Z"), "item" : [ { "cantidad" : 1, "precio" : 700, "producto" : "SET HERRAMIENTAS" } ], "nroFactura" : 1018 }
+{ "cliente" : { "apellido" : "Lavagno", "cuit" : 2729887543, "nombre" : "Soledad", "region" : "NOA", "tipo" : "VIP" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-24T00:00:00Z"), "fechaVencimiento" : ISODate("2014-03-26T00:00:00Z"), "item" : [ { "cantidad" : 1, "precio" : 700, "producto" : "SET HERRAMIENTAS" } ], "nroFactura" : 1025 }
+> 
+```
+
+### j. Eliminar todas las facturas de los clientes del CENTRO.
+
+```
+> db.facturas.find({"cliente.region":"CENTRO"},{_id:0}).limit(2)
+{ "cliente" : { "apellido" : "Malinez", "cuit" : 2740488484, "nombre" : "Marina", "region" : "CENTRO" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 11, "precio" : 18, "producto" : " CORREA 12mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" } ], "nroFactura" : 1063 }
+{ "cliente" : { "apellido" : "Malinez", "cuit" : 2740488484, "nombre" : "Marina", "region" : "CENTRO" }, "condPago" : "CONTADO", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 11, "precio" : 18, "producto" : " CORREA 12mm" }, { "cantidad" : 1, "precio" : 490, "producto" : "TALADRO 12mm" } ], "nroFactura" : 1070 }
+> 
+> {
+... var bulk = db.facturas.initializeOrderedBulkOp();
+... bulk.find({"cliente.region":"CENTRO"}).remove();
+... bulk.execute();
+... }
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 0,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 15,
+	"upserted" : [ ]
+})
+>
+> db.facturas.find({"cliente.region":"CENTRO"},{_id:0}).limit(2)
+> 
+```
+
+### k. Obtener la factura con el mayor nroFactura del cliente de apellido Lavagno donde haya comprado “SET HERRAMIENTAS” y luego asegurarse de borrar únicamenteesa factura.
 
 
 ```
-Codigo
-
+> db.facturas.find({$and:[{"cliente.apellido":"Lavagno"},{"item.producto":"SET HERRAMIENTAS"}]},{"nroFactura":1}).sort({"nroFactura":-1})
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410c2"), "nroFactura" : 1095 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410bb"), "nroFactura" : 1088 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410b4"), "nroFactura" : 1081 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410ad"), "nroFactura" : 1074 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410a6"), "nroFactura" : 1067 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a04109f"), "nroFactura" : 1060 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a041098"), "nroFactura" : 1053 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a041091"), "nroFactura" : 1046 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a04108a"), "nroFactura" : 1039 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a041083"), "nroFactura" : 1032 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a04107c"), "nroFactura" : 1025 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a041075"), "nroFactura" : 1018 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a04106e"), "nroFactura" : 1011 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a041067"), "nroFactura" : 1004 }
+> 
+> {
+... var factura = db.facturas.find({$and:[{"cliente.apellido":"Lavagno"},{"item.producto":"SET HERRAMIENTAS"}]}).sort({"nroFactura":-1}).limit(1);
+... db.facturas.remove({_id:factura.next()._id});
+... }
+WriteResult({ "nRemoved" : 1 })
+> 
+> db.facturas.find({$and:[{"cliente.apellido":"Lavagno"},{"item.producto":"SET HERRAMIENTAS"}]},{"nroFactura":1}).sort({"nroFactura":-1})
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410bb"), "nroFactura" : 1088 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410b4"), "nroFactura" : 1081 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410ad"), "nroFactura" : 1074 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410a6"), "nroFactura" : 1067 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a04109f"), "nroFactura" : 1060 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a041098"), "nroFactura" : 1053 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a041091"), "nroFactura" : 1046 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a04108a"), "nroFactura" : 1039 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a041083"), "nroFactura" : 1032 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a04107c"), "nroFactura" : 1025 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a041075"), "nroFactura" : 1018 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a04106e"), "nroFactura" : 1011 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a041067"), "nroFactura" : 1004 }
+> 
 ```
 
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
-
-
-```
-Codigo
-
-```
-
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
-
-
-```
-Codigo
-
-```
-
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
-
-
-```
-Codigo
-
-```
-
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
-
-
-```
-Codigo
-
-```
-
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
-
-
-```
-Codigo
-
-```
-
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+### l. Incrementar el número de factura de la 1501. (NO EXISTE! -> Usare 1050)
 
 
 ```
-Codigo
-
+> db.facturas.findOne({"nroFactura":1050})
+{
+	"_id" : ObjectId("55e4a6fcbfc68c676a041095"),
+	"cliente" : {
+		"apellido" : "Zavasi",
+		"cuit" : 2038373771,
+		"nombre" : "Martin",
+		"region" : "CABA"
+	},
+	"condPago" : "30 Ds FF",
+	"fechaEmision" : ISODate("2014-02-20T00:00:00Z"),
+	"fechaVencimiento" : ISODate("2014-03-22T00:00:00Z"),
+	"item" : [
+		{
+			"cantidad" : 2,
+			"precio" : 134,
+			"producto" : "CORREA 10mm"
+		}
+	],
+	"nroFactura" : 1050
+}
+> db.facturas.update({"nroFactura":1050},{$inc:{"nroFactura":1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> 
+> db.facturas.findOne({"nroFactura":1050},{_id:0})
+null
+> 
+> db.facturas.findOne({"nroFactura":1051},{_id:0})
+{
+	"cliente" : {
+		"apellido" : "Zavasi",
+		"cuit" : 2038373771,
+		"nombre" : "Martin",
+		"region" : "CABA"
+	},
+	"condPago" : "30 Ds FF",
+	"fechaEmision" : ISODate("2014-02-20T00:00:00Z"),
+	"fechaVencimiento" : ISODate("2014-03-22T00:00:00Z"),
+	"item" : [
+		{
+			"cantidad" : 2,
+			"precio" : 134,
+			"producto" : "CORREA 10mm"
+		}
+	],
+	"nroFactura" : 1051
+}
+> 
 ```
 
-### a. Obtener los números de factura de los clientes que contengan una i (minúscula o mayúscula) pero que no sea Manoni.
+### m. A la factura número 1500 cambiarle la condición de pago a “30 Ds FF” -> (NO EXISTE 1500! usare la 1002)
 
 
 ```
-Codigo
+> db.facturas.find({},{"nroFactura":1002,"condPago":1}).limit(5)
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410aa"), "condPago" : "30 Ds FF", "nroFactura" : 1071 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410a6"), "condPago" : "30 Ds FF", "nroFactura" : 1067 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410ab"), "condPago" : "CONTADO", "nroFactura" : 1072 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a041064"), "condPago" : "30 Ds FF", "nroFactura" : 1001 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a041065"), "condPago" : "CONTADO", "nroFactura" : 1002 }
+>
+> db.facturas.update({"nroFactura":1002},{$set:{"condPago":"30 Ds FF"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+>
+> db.facturas.find({},{"nroFactura":1002,"condPago":1}).limit(5)
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410aa"), "condPago" : "30 Ds FF", "nroFactura" : 1071 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410a6"), "condPago" : "30 Ds FF", "nroFactura" : 1067 }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410ab"), "condPago" : "CONTADO", "nroFactura" : 1072 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a041064"), "condPago" : "30 Ds FF", "nroFactura" : 1001 }
+{ "_id" : ObjectId("55e4a6fbbfc68c676a041065"), "condPago" : "30 Ds FF", "nroFactura" : 1002 }
+>
+```
 
+### n. Restarle 9 al número de factura de la 1510. (NO EXISTE 1510! usare la 1071)
+
+```
+> db.facturas.update({"nroFactura":1071},{$inc:{"nroFactura":-9}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+>
+> db.facturas.find({},{"nroFactura":1071,"condPago":1}).limit(1)
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410aa"), "condPago" : "30 Ds FF", "nroFactura" : 1062 }
+>
+```
+
+### o. A la factura número 1515 incrementarle el campo “vistas” y decrementarle el campo “contador”. (NO EXISTE 1515! usare la 1002)
+
+```
+> db.facturas.update({"nroFactura":1002},{$inc:{"vistas":1,"contador":-1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+>
+> db.facturas.find({"nroFactura":1002},{_id:0})
+{ "cliente" : { "apellido" : "Zavasi", "cuit" : 2038373771, "nombre" : "Martin", "region" : "CABA" }, "condPago" : "30 Ds FF", "fechaEmision" : ISODate("2014-02-20T00:00:00Z"), "fechaVencimiento" : ISODate("2014-02-20T00:00:00Z"), "item" : [ { "cantidad" : 6, "precio" : 60, "producto" : "TUERCA 2mm" }, { "cantidad" : 12, "precio" : 134, "producto" : "CORREA 10mm" } ], "nroFactura" : 1002, "contador" : -1, "vistas" : 1 }
+> 
+```
+
+### p. Guarde el documento de la factura número 9000 en una variable. Luego haga un update total de la factura 9000 reemplazándola por el documento {x:Math.random()} (generará un número aleatorio para el campo x). ¿Hay forma de consultar el documento modificado? ¿De qué forma? (NO EXISTE 9000! usare la 1073)
+
+
+```
+> db.facturas.findOne({"nroFactura":1073})
+{
+	"_id" : ObjectId("55e4a6fcbfc68c676a0410ac"),
+	"cliente" : {
+		"apellido" : "Manoni",
+		"cuit" : 2029889382,
+		"nombre" : "Juan Manuel",
+		"region" : "NEA"
+	},
+	"condPago" : "CONTADO",
+	"fechaEmision" : ISODate("2014-02-24T00:00:00Z"),
+	"fechaVencimiento" : ISODate("2014-02-24T00:00:00Z"),
+	"item" : [
+		{
+			"cantidad" : 2,
+			"precio" : 60,
+			"producto" : "TUERCA 2mm"
+		},
+		{
+			"cantidad" : 1,
+			"precio" : 490,
+			"producto" : "TALADRO 12mm"
+		},
+		{
+			"cantidad" : 15,
+			"precio" : 90,
+			"producto" : "TUERCA 5mm"
+		}
+	],
+	"nroFactura" : 1073
+}
+> 
+> {
+... var factura = db.facturas.findOne({"nroFactura":1073});
+... var id = factura._id;
+... db.facturas.update({"nroFactura":factura.nroFactura},{x:Math.random()});
+... db.facturas.findOne({"_id":id});
+... }
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410ac"), "x" : 0.40223124133015487 }
+> 
+> db.facturas.find({"x":{$exists:1}})
+{ "_id" : ObjectId("55e4a6fcbfc68c676a0410ac"), "x" : 0.40223124133015487 }
+> 
 ```
 
