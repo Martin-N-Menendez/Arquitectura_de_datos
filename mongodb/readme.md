@@ -1,4 +1,4 @@
-# Práctica de MongoDB
+# Práctica de MongoDB parte 1
 
 ## 1. Abrir una terminal en el directorio donde haya guardado el archivo “facturas.json” y usar el siguiente comando para importar la colección de facturas a la db finanzas:
 
@@ -283,3 +283,14 @@ Type "it" for more
 }
 
 ```
+
+# Práctica de MongoDB parte 2
+
+## 1. Abrir el shell de MongoDB (mongo) y pararse en la db finanzas:
+
+
+```
+Codigo
+
+```
+
